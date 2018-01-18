@@ -73,9 +73,9 @@ export class HeroService {}
 Without a barrel, a consumer needs three import statements:
 
 ```
-import { HeroComponent } from '../heroes/hero.component.ts';
-import { Hero }          from '../heroes/hero.model.ts';
-import { HeroService }   from '../heroes/hero.service.ts';
+import { HeroComponent } from '../heroes/hero.component';
+import { Hero }          from '../heroes/hero.model';
+import { HeroService }   from '../heroes/hero.service';
 ```
 
 You can add a barrel to the heroes folder (called index, by convention) that exports all of these items:
@@ -283,3 +283,5 @@ this.swUpdate.activated.subscribe(event => {
     console.log('[App] Update activated: old version was', event.previous, 'new version is', event.current);
 });
 ```
+
+If this guide helps you, please give a star. :)
