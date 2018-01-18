@@ -284,4 +284,20 @@ this.swUpdate.activated.subscribe(event => {
 });
 ```
 
+## Changes to Rxjs
+
+```
+import { Observable } from 'rxjs/Observable';
+import { of } from 'rxjs/observable/of';
+import { map, catch, throw } from 'rxjs/operators';
+
+// How to use
+
+const posts = this.postService.getPosts()
+    .pipe(
+        map(),
+        catch(error => throw(error))
+    );
+```
+
 If this guide helps you, please give a star. :)
