@@ -1,6 +1,6 @@
-## Guide for structuring an Angular Applications
+# Guide for structuring an Angular Applications
 
-# Creating an Angular Project using @angular/cli and installing dependencies using yarn
+## Creating an Angular Project using @angular/cli and installing dependencies using yarn
 
 Ensure that you're using the latest version of `angular/cli` when starting a new project.
 
@@ -17,12 +17,12 @@ For projects that uses material.angular and NgRx:
 import 'hammerjs';
 ```
 
-# Generating a universal app and an app shell
+## Generating a universal app and an app shell
 
 * ng generate universal universal-app
 * ng generate app-shell  --universal-app <universal-app-name> --route <app-shell-route-name> --style=scss
 
-# Short imports
+## Short imports
 
 ```
 //root/tsconfig.ts
@@ -53,7 +53,7 @@ config: {
   }
 ```
 
-# Guide for creating index.ts files
+## Guide for creating index.ts files
 
 reference: https://angular.io/guide/glossary#barrel
 
@@ -88,7 +88,7 @@ Now a consumer can import what it needs from the barrel.
 
 `import { Hero, HeroService } from '../heroes'; // index is implied`
 
-# Add initial page loading
+## Add initial page loading
 
 Generate a favicons via <a href="https://realfavicongenerator.net/">Real Favicon Generator<a> and paste it into `assets/images/favicons/` folder and put the code below in `index.html` file.
 
@@ -135,7 +135,7 @@ Make sure to include the `manifest.json` in .angular-cli.json.
 </body>
 ```
 
-# Initial Configuration of ngsw-config.json
+## Initial Configuration of ngsw-config.json
 
 ```
 {
@@ -179,7 +179,7 @@ Make sure to include the `manifest.json` in .angular-cli.json.
 }
 ```
 
-# Initial Configuration of manifest.json
+## Initial Configuration of manifest.json
 
 ```
 {
@@ -257,7 +257,7 @@ Make sure to include the `manifest.json` in .angular-cli.json.
 
 ```
 
-# Subscribing to Service Worker Updates
+## Subscribing to Service Worker Updates
 
 ```
 import { MatSnackBar } from '@angular/material';
