@@ -4,6 +4,27 @@
 
 Ensure that you're using the latest version of `angular/cli` when starting a new project.
 
+To update Angular CLI to a new version, you must update both the global package and your project's local package.
+
+Global package:
+
+```
+npm uninstall -g @angular/cli
+npm cache clean
+# if npm version is > 5 then use `npm cache verify` to avoid errors (or to avoid using --force)
+npm install -g @angular/cli@latest
+```
+
+Local project package:
+
+```
+rm -rf node_modules dist # use rmdir /S/Q node_modules dist in Windows Command Prompt; use rm -r -fo node_modules,dist in Windows PowerShell
+npm install --save-dev @angular/cli@latest
+npm install
+```
+
+reference: https://github.com/angular/angular-cli
+
 For projects that uses material.angular and NgRx:
 
 * ng new <project-name> -r -v -si -p=<project-name> --style=scss --service-worker
@@ -19,7 +40,7 @@ import 'hammerjs';
 
 ## Generating a universal app and an app shell
 
-* ng generate universal universal-app
+* ng generate universal <universal-app-name>
 * ng generate app-shell  --universal-app <universal-app-name> --route <app-shell-route-name> --style=scss
 
 ## Short imports
@@ -80,9 +101,11 @@ import { HeroService }   from '../heroes/hero.service';
 
 You can add a barrel to the heroes folder (called index, by convention) that exports all of these items:
 
+```
 export * from './hero.model';   // re-export all of its exports
 export * from './hero.service'; // re-export all of its exports
 export { HeroComponent } from './hero.component'; // re-export the named thing
+```
 
 Now a consumer can import what it needs from the barrel.
 
