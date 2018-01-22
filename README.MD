@@ -29,7 +29,7 @@ For projects that uses material.angular and NgRx:
 
 * ng new <project-name> -r -v -si -p=<project-name> --style=scss --service-worker
 * yarn install
-* yarn add @angular/cdk @angular/flex-layout @angular/material hammerjs @ngrx/store @ngrx/effects @ngrx/entity @ngrx/store-devtools @ngrx/router-store jwt-decode font-awesome @ngx-loading-bar/http-client @ngx-loading-bar/router
+* yarn add @angular/platform-server @angular/cdk @angular/flex-layout @angular/material hammerjs @ngrx/store @ngrx/effects @ngrx/entity @ngrx/store-devtools @ngrx/router-store jwt-decode font-awesome @ngx-loading-bar/http-client @ngx-loading-bar/router
 * yarn add --dev ngrx-store-freeze standard-version 
 
 ```
@@ -41,18 +41,19 @@ import 'hammerjs';
 ## Generating a universal app and an app shell
 
 * ng generate universal <universal-app-name>
-* ng generate app-shell  --universal-app <universal-app-name> --route <app-shell-route-name> --style=scss
+* yarn install
+* ng generate app-shell  --universal-app <universal-app-name> --route <app-shell-route-name>
 
 ## Short imports
 
 ```
-//root/tsconfig.ts
+//root/tsconfig.json
 
 "baseUrl": "src",
 "paths": {
-    "@core": ["app/core/*"],
-    "@shared": ["app/shared/*"],
-    "@environments":["environments/*"]
+    "@services/*": ["app/path/to/services/*"],
+    "@components/*": ["app/somewhere/deeply/nested/*"],
+    "@environments/*": ["environments/*"]
 }
 ```
 
@@ -64,13 +65,13 @@ import 'hammerjs';
 ]
 ```
 
-e.g `import { environment as env } from '@env/environment';`
+e.g `import { environment } from '@environments/environment';`
 
 ```
 // get your VAPID keys on https://web-push-codelab.glitch.me/
 config: {
-    "BASE_URL": "http://localhost:3000",
-    "VAPID_PUBLIC_KEY": ""
+    BASE_URL: 'http://localhost:3000',
+    VAPID_PUBLIC_KEY: ''
   }
 ```
 
@@ -141,21 +142,7 @@ Make sure to include the `manifest.json` in .angular-cli.json.
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="assets/images/favicons/mstile-144x144.png">
     <meta name="theme-color" content="#ffffff">
-
-    <style>
-        .index__loading {
-            /** styles for your initial loading */
-        }
-    </style>
 </head>
-
-<body>
-    <app-root>
-        <div class="index__loading">
-            Loading...
-        </div>
-    </app-root>
-</body>
 ```
 
 ## Initial Configuration of ngsw-config.json
@@ -322,5 +309,8 @@ const posts = this.postService.getPosts()
         catch(error => throw(error))
     );
 ```
+
+Reference for Universal Transfer State
+https://medium.com/@evertonrobertoauler/angular-5-universal-with-transfer-state-using-angular-cli-19fe1e1d352c
 
 If this guide helps you, please give a star. :)
