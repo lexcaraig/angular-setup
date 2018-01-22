@@ -1,6 +1,6 @@
-import { ServerTransferStateModule } from '@angular/platform-server';
 import { NgModule } from '@angular/core';
-import { ServerModule } from '@angular/platform-server';
+import { ServerModule, ServerTransferStateModule } from '@angular/platform-server';
+import { ModuleMapLoaderModule } from '@nguniversal/module-map-ngfactory-loader';
 
 import { AppModule } from './app.module';
 import { AppComponent } from './app.component';
@@ -14,7 +14,8 @@ const routes: Routes = [ { path: 'example-app-shell-path', component: AppShellCo
     AppModule,
     ServerModule,
     RouterModule.forRoot(routes),
-    ServerTransferStateModule
+    ServerTransferStateModule,
+    ModuleMapLoaderModule
   ],
   bootstrap: [AppComponent],
   declarations: [AppShellComponent],
